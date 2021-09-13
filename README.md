@@ -15,3 +15,7 @@
 - Run `bundle exec rspec` to validate the installation
 - Run `rails server`
 - You're good to go :tada:
+
+## Challenge
+
+See [`doc/challenge1/README.md`](./doc/challenge1/README.md)
