@@ -18,4 +18,4 @@
 
 ## Challenge
 
-See [`doc/challenge1/README.md`](./doc/challenge1/README.md)
+See [`doc/challenge/README.md`](./doc/challenge/README.md)
