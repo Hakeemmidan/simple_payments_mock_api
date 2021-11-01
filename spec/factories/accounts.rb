@@ -9,7 +9,7 @@
 #  first_name   :string
 #  last_name    :string
 #  phone_number :string
-#  status       :integer          default(0), not null
+#  status       :integer          default("pending"), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
@@ -26,6 +26,6 @@ FactoryBot.define do
     email { Faker::Internet.email }
     phone_number { Faker::PhoneNumber.cell_phone_in_e164 }
 
-    status { 0 }
+    status { Account.statuses[:pending] }
   end
 end
