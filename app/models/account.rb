@@ -27,4 +27,16 @@ class Account < ApplicationRecord
     pending: 0,
     verified: 1
   }, _suffix: true
+
+  has_many :send_money_transactions,
+    foreign_key: :sender_id,
+    class_name: 'MoneySendTransaction',
+    dependent: :nullify,
+    inverse_of: :sender
+
+  has_many :receive_money_transactions,
+    foreign_key: :receiver_id,
+    class_name: 'MoneySendTransaction',
+    dependent: :nullify,
+    inverse_of: :receiver
 end
