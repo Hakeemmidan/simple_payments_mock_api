@@ -22,7 +22,20 @@
 #
 FactoryBot.define do
   factory :money_send_transaction do
+    association :sender, factory: [:account, :verified]
+    association :receiver, factory: [:account, :verified]
     amount { Faker::Number.decimal(2) }
-    status { Transaction.statuses[:pending] }
+    
+    trait :declined do
+      status { MoneySendTransaction.statuses[:declined] }
+    end
+
+    trait :pending do
+      status { MoneySendTransaction.statuses[:pending] }
+    end
+
+    trait :succeeded do
+      status { MoneySendTransaction.statuses[:succeeded] }
+    end
   end
 end

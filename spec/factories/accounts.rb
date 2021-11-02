@@ -24,9 +24,20 @@ FactoryBot.define do
   factory :account do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
+    balance { Faker::Number.decimal(2) }
     email { Faker::Internet.email }
     phone_number { Faker::PhoneNumber.cell_phone_in_e164 }
 
-    status { Account.statuses[:pending] }
+    trait :unverified do
+      status { Account.statuses[:verified] }
+    end
+
+    trait :pending do
+      status { Account.statuses[:verified] }
+    end
+
+    trait :verified do
+       status { Account.statuses[:verified] }
+    end
   end
 end

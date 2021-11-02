@@ -23,7 +23,7 @@
 require 'rails_helper'
 
 RSpec.describe Account, type: :model do
-  subject(:account) { build(:account) }
+  subject(:account) { build(:account, :verified) }
 
   it 'has a valid factory' do
     expect(account).to be_valid

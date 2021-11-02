@@ -21,7 +21,7 @@
 #  fk_rails_...  (sender_id => accounts.id)
 #
 class MoneySendTransaction < ApplicationRecord
-  validates :amount, :status, presence: true
+  validates :amount, :status, :sender, :receiver, presence: true
 
   enum status: {
     declined: -1,

@@ -23,5 +23,21 @@
 require 'rails_helper'
 
 RSpec.describe MoneySendTransaction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:money_send_transaction) { build(:money_send_transaction) }
+
+  it 'has a valid factory' do
+    expect(money_send_transaction).to be_valid
+  end
+
+  describe 'Associations' do
+    it { should belong_to(:sender).class_name('Account') }
+    it { should belong_to(:receiver).class_name('Account') }
+  end
+
+  describe 'Validations' do
+    it { should validate_presence_of(:amount) }
+    it { should validate_presence_of(:status) }
+    it { should validate_presence_of(:sender) }
+    it { should validate_presence_of(:receiver) }
+  end
 end
