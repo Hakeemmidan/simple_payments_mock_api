@@ -29,6 +29,11 @@ RSpec.describe Account, type: :model do
     expect(account).to be_valid
   end
 
+  describe 'Associations' do
+    it { should have_many(:money_send_transactions).class_name('MoneySendTransaction') }
+    it { should have_many(:money_receive_transactions).class_name('MoneySendTransaction') }
+  end
+
   describe 'Validations' do
     it { is_expected.to validate_presence_of(:first_name) }
     it { is_expected.to validate_presence_of(:last_name) }
