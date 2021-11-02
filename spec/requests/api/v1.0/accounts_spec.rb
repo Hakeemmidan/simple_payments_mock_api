@@ -60,11 +60,11 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
           run_test!
         end
 
-        response '422', 'Invalid request' do
+        response '404', 'Not found' do
           schema '$ref' => '#/components/schemas/errors_object'
           examples 'application/json' => {
             errors: [
-              'Request is missing required parameters. Please check OpenAPI spec and see if it mathces. Contact support if this error presist despite matching OpenAPI spec.'
+              'Requested object (via provided ID) not found.'
             ]
           }
           run_test!

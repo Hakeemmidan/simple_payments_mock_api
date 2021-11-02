@@ -36,8 +36,8 @@ end
 
 group :test do
   gem 'climate_control', '~> 1.0'
-  gem 'shoulda-matchers', '~> 5.0'
   gem 'database_cleaner-active_record', '~> 2.0'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 gem 'tzinfo-data', '~> 1.2', platforms: %i[mingw mswin x64_mingw jruby]

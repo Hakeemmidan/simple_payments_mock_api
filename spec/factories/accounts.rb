@@ -24,7 +24,7 @@ FactoryBot.define do
   factory :account do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
-    balance { Faker::Number.decimal(2) }
+    balance { Faker::Number.decimal(l_digits: 3, r_digits: 2) }
     email { Faker::Internet.email }
     phone_number { Faker::PhoneNumber.cell_phone_in_e164 }
 
