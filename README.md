@@ -33,14 +33,20 @@ ______
     - This way we don't automatically pull breaking changes on `bundle update`
 - Versioned API
   - Semantic versioning with MAJOR and MINOR versions specified for endpoints
-  - PATCH not specified because user doesn't need to specify version for backwards compatible fixes. They can assume that theses happen in the background.
+    - PATCH not specified because user doesn't need to specify version for bug fixes. They can assume that theses happen in the background.
   - Read more about semantic versioning [here](https://semver.org/)
 - [OpenAPI](https://swagger.io/specification/) compliant endpoints
   - All API endpoits have OpenAPI specs
   - Viewable at http://localhost:3000/api-docs
+  - If change any specs (at `spec/requests`), make sure you run `rails rswag:specs:swaggerize ` after
+  - To generate a controller spec file, run `rails generate rspec:swagger API::v1.0::MyController` (replacing `MyController` with the target controller name)
 - Integration tests
   - All API endpoints have integration tests
 - Dockerized app
+
+### Added Gems:
+- `rswag`
+- `rails-erd`
 
 ### Assumptions:
 - All transactions are done in a single currency
