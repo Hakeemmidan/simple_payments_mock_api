@@ -29,13 +29,14 @@ class Account < ApplicationRecord
     verified: 1
   }, _suffix: true
 
-  has_many :send_money_transactions,
+  has_many :money_send_transactions,
     foreign_key: :sender_id,
     class_name: 'MoneySendTransaction',
     dependent: :nullify,
     inverse_of: :sender
 
-  has_many :receive_money_transactions,
+  # Gets all transactions that have this account as the receiver
+  has_many :money_receive_transactions,
     foreign_key: :receiver_id,
     class_name: 'MoneySendTransaction',
     dependent: :nullify,
