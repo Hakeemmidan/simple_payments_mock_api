@@ -51,6 +51,7 @@ ______
 ### Added Gems:
 - `rswag`
 - `rails-erd`
+- `database_cleaner-active_record`
 
 ### Assumptions:
 - All transactions are done in a single currency
