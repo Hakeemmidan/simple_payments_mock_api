@@ -24,6 +24,9 @@ ______
 
 ## Solution
 
+### OpenAPI UI
+\<OpenAPI UI IMAGE HERE\>
+
 ### Schema
 \<SCHEMA IMAGE HERE\>
 

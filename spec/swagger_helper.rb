@@ -41,9 +41,19 @@ RSpec.configure do |config|
               phone_number: { type: :string },
               status: { type: :string, enum: %w[unverified pending verified] },
               created_at: { type: :string, format: :date_time },
-              updated_at: { type: :string, format: :date_time },
+              updated_at: { type: :string, format: :date_time }
             },
             required: %w[id balance email first_name last_name phone_number status created_at updated_at]
+          },
+          account_partial: {
+            type: :object,
+            properties: {
+              first_name: { type: :string },
+              last_name: { type: :string },
+              email: { type: :string },
+              phone_number: { type: :string }
+            },
+            required: %w[first_name last_name email phone_number]
           },
           money_send_transaction_full: {
             type: :object,

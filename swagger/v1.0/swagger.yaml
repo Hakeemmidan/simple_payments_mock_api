@@ -53,6 +53,22 @@ components:
       - status
       - created_at
       - updated_at
+    account_partial:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        phone_number:
+          type: string
+      required:
+      - first_name
+      - last_name
+      - email
+      - phone_number
     money_send_transaction_full:
       type: object
       properties:
@@ -105,6 +121,41 @@ components:
       - sender_id
       - receiver_id
 paths:
+  "/accounts":
+    post:
+      summary: Create a new account
+      tags:
+      - Account
+      parameters: []
+      responses:
+        '201':
+          description: Account created successfully
+          content:
+            application/json:
+              example:
+                id: 1
+                first_name: hello
+                last_name: world
+                phone_number: '123'
+                email: hello_world@gmail.com
+                status: pending
+                created_at: '2020-01-01T00:00:00.000Z'
+                updated_at: '2020-01-01T00:00:00.000Z'
+                balance: 0.0
+        '422':
+          description: Invalid request
+          content:
+            application/json:
+              example:
+                errors:
+                - Request is missing required parameters. Please check OpenAPI spec
+                  and see if it mathces. Contact support if this error presist despite
+                  matching OpenAPI spec.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/account_partial"
   "/accounts/{id}":
     get:
       summary: Get Account.find(id)
