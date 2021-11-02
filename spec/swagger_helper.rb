@@ -30,19 +30,20 @@ RSpec.configure do |config|
             },
             required: ['errors']
           },
-          money_send_transaction_response: {
+          money_send_transaction_full: {
             type: :object,
             properties: {
               id: { type: :integer, format: :int64 },
               amount: { type: :number, format: :double },
+              status: { type: :string, enum: %w[declined pending succeeded] },
               sender_id: { type: :integer, format: :int64 },
               receiver_id: { type: :integer, format: :int64 },
               created_at: { type: :string, format: 'date-time' },
               updated_at: { type: :string, format: 'date-time' }
             },
-            required: %w[id amount sender_id receiver_id created_at updated_at]
+            required: %w[id amount status sender_id receiver_id created_at updated_at]
           },
-          money_send_transaction_request: {
+          money_send_transaction_partial: {
             type: :object,
             properties: {
               amount: { type: :number, format: :double },

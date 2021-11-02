@@ -14,7 +14,7 @@ components:
             type: string
       required:
       - errors
-    money_send_transaction_response:
+    money_send_transaction_full:
       type: object
       properties:
         id:
@@ -23,6 +23,12 @@ components:
         amount:
           type: number
           format: double
+        status:
+          type: string
+          enum:
+          - declined
+          - pending
+          - succeeded
         sender_id:
           type: integer
           format: int64
@@ -38,11 +44,12 @@ components:
       required:
       - id
       - amount
+      - status
       - sender_id
       - receiver_id
       - created_at
       - updated_at
-    money_send_transaction_request:
+    money_send_transaction_partial:
       type: object
       properties:
         amount:
@@ -63,7 +70,7 @@ paths:
     get:
       summary: Get all Account.find(id)'s money send transactions
       tags:
-      - Account_money_send
+      - Account Money Sendings
       parameters:
       - name: id
         in: path
@@ -105,7 +112,7 @@ paths:
     get:
       summary: Get all Account.find(id)'s money receive transactions
       tags:
-      - Account_money_receive
+      - Account Money Receivings
       parameters:
       - name: id
         in: path
@@ -147,7 +154,7 @@ paths:
     post:
       summary: Creates a transaction
       tags:
-      - MoneySendTransaction
+      - Money Send Transactions
       parameters: []
       responses:
         '201':
@@ -182,7 +189,7 @@ paths:
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/money_send_transaction_request"
+              "$ref": "#/components/schemas/money_send_transaction_partial"
 servers:
 - url: https://{defaultHost}
   variables:

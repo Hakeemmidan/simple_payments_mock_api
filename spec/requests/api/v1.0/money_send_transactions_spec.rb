@@ -4,14 +4,14 @@ RSpec.describe 'api/v1.0/money_send_transactions', type: :request do
   describe 'MoneySendTransaction v1.0 API' do
     path '/money_send_transaction' do
       post 'Creates a transaction' do
-        tags 'MoneySendTransaction'
+        tags 'Money Send Transactions'
         consumes 'application/json'
         parameter name: :money_send_transaction, in: :body, schema: {
-          '$ref' => '#/components/schemas/money_send_transaction_request'
+          '$ref' => '#/components/schemas/money_send_transaction_partial'
         }
 
         response '201', 'Transaction created' do
-          schema '$ref' => '#/components/schemas/money_send_transaction_response'
+          schema '$ref' => '#/components/schemas/money_send_transaction_full'
           examples 'application/json' => {
             'id' => 1,
             'amount' => '3.01',

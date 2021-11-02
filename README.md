@@ -37,7 +37,8 @@ ______
   - Read more about semantic versioning [here](https://semver.org/)
 - [OpenAPI](https://swagger.io/specification/) compliant endpoints
   - All API endpoits have OpenAPI specs
-  - Viewable at http://localhost:3000/api-docs
+  - UI viewable at http://localhost:3000/api-docs
+  - YAML file viewable at `swagger/v1.0/swagger.yaml`
   - If change any specs (at `spec/requests`), make sure you run `rails rswag:specs:swaggerize ` after
   - To generate a controller spec file, run `rails generate rspec:swagger API::v1.0::MyController` (replacing `MyController` with the target controller name)
 - Integration tests

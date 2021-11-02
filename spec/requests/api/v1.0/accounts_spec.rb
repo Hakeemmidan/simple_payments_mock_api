@@ -4,7 +4,7 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
   describe 'Accounts v1.0 API' do
     path '/accounts/{id}/money_send_transactions' do
       get "Get all Account.find(id)'s money send transactions" do
-        tags 'Account_money_send'
+        tags 'Account Money Sendings'
         consumes 'application/json'
         parameter name: :id, in: :path, schema: { type: :integer, format: :int64 }, required: true
 
@@ -12,7 +12,7 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
           schema type: :object, properties: {
             data: {
               type: :array, items: {
-                '$ref' => '#/components/schemas/money_send_transaction_response'
+                '$ref' => '#/components/schemas/money_send_transaction_full'
               }
             }
           }
@@ -55,7 +55,7 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
 
     path '/accounts/{id}/money_receive_transactions' do
       get "Get all Account.find(id)'s money receive transactions" do
-        tags 'Account_money_receive'
+        tags 'Account Money Receivings'
         consumes 'application/json'
         parameter name: :id, in: :path, schema: { type: :integer, format: :int64 }, required: true
 
@@ -63,7 +63,7 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
           schema type: :object, properties: {
             data: {
               type: :array, items: {
-                '$ref' => '#/components/schemas/money_send_transaction_response'
+                '$ref' => '#/components/schemas/money_send_transaction_full'
               }
             }
           }
