@@ -30,6 +30,21 @@ RSpec.configure do |config|
             },
             required: ['errors']
           },
+          account_full: {
+            type: :object,
+            properties: {
+              id: { type: :integer, format: :int64 },
+              balance: { type: :integer, format: :double },
+              email: { type: :string },
+              first_name: { type: :string },
+              last_name: { type: :string },
+              phone_number: { type: :string },
+              status: { type: :string, enum: %w[unverified pending verified] },
+              created_at: { type: :string, format: :date_time },
+              updated_at: { type: :string, format: :date_time },
+            },
+            required: %w[id balance email first_name last_name phone_number status created_at updated_at]
+          },
           money_send_transaction_full: {
             type: :object,
             properties: {

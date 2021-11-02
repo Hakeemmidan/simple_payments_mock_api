@@ -14,6 +14,45 @@ components:
             type: string
       required:
       - errors
+    account_full:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        balance:
+          type: integer
+          format: double
+        email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone_number:
+          type: string
+        status:
+          type: string
+          enum:
+          - unverified
+          - pending
+          - verified
+        created_at:
+          type: string
+          format: date_time
+        updated_at:
+          type: string
+          format: date_time
+      required:
+      - id
+      - balance
+      - email
+      - first_name
+      - last_name
+      - phone_number
+      - status
+      - created_at
+      - updated_at
     money_send_transaction_full:
       type: object
       properties:
@@ -66,11 +105,47 @@ components:
       - sender_id
       - receiver_id
 paths:
+  "/accounts/{id}":
+    get:
+      summary: Get Account.find(id)
+      tags:
+      - Account
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          format: int64
+        required: true
+      responses:
+        '201':
+          description: Account.find(id) found
+          content:
+            application/json:
+              example:
+                id: 1
+                first_name: hello
+                last_name: world
+                phone_number: '123'
+                email: hello_world@gmail.com
+                status: pending
+                created_at: '2020-01-01T00:00:00.000Z'
+                updated_at: '2020-01-01T00:00:00.000Z'
+                balance: 0.0
+        '422':
+          description: Invalid request
+          content:
+            application/json:
+              example:
+                errors:
+                - Request is missing required parameters. Please check OpenAPI spec
+                  and see if it mathces. Contact support if this error presist despite
+                  matching OpenAPI spec.
   "/accounts/{id}/money_send_transactions":
     get:
       summary: Get all Account.find(id)'s money send transactions
       tags:
-      - Account Money Sendings
+      - Account
       parameters:
       - name: id
         in: path
@@ -112,7 +187,7 @@ paths:
     get:
       summary: Get all Account.find(id)'s money receive transactions
       tags:
-      - Account Money Receivings
+      - Account
       parameters:
       - name: id
         in: path
