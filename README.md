@@ -36,7 +36,12 @@ ______
   - PATCH not specified because user doesn't need to specify version for backwards compatible fixes. They can assume that theses happen in the background.
   - Read more about semantic versioning [here](https://semver.org/)
 - [OpenAPI](https://swagger.io/specification/) compliant endpoints
-  - All API endpoits and models have OpenAPI specs
+  - All API endpoits have OpenAPI specs
+  - Viewable at http://localhost:3000/api-docs
 - Integration tests
   - All API endpoints have integration tests
 - Dockerized app
+
+### Assumptions:
+- All transactions are done in a single currency
+

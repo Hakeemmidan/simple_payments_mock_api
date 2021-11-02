@@ -15,11 +15,43 @@ RSpec.configure do |config|
   # document below. You can override this behavior by adding a swagger_doc tag to the
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
-    'v1/swagger.yaml' => {
+    'v1.0/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'API V1',
-        version: 'v1'
+        title: 'API V1.0',
+        version: 'v1.0'
+      },
+      components: {
+        schemas: {
+          errors_object: {
+            type: :object,
+            properties: {
+              errors: { type: :array, items: { type: :string } }
+            },
+            required: ['errors']
+          },
+          money_send_transaction_response: {
+            type: :object,
+            properties: {
+              id: { type: :integer, format: :int64 },
+              amount: { type: :number, format: :double },
+              sender_id: { type: :integer, format: :int64 },
+              receiver_id: { type: :integer, format: :int64 },
+              created_at: { type: :string, format: 'date-time' },
+              updated_at: { type: :string, format: 'date-time' }
+            },
+            required: %w[id amount sender_id receiver_id created_at updated_at]
+          },
+          money_send_transaction_request: {
+            type: :object,
+            properties: {
+              amount: { type: :number, format: :double },
+              sender_id: { type: :integer, format: :int64 },
+              receiver_id: { type: :integer, format: :int64 }
+            },
+            required: %w[amount sender_id receiver_id]
+          }
+        }
       },
       paths: {},
       servers: [
@@ -27,7 +59,7 @@ RSpec.configure do |config|
           url: 'https://{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+              default: 'localhost:3000'
             }
           }
         }
