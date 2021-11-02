@@ -21,17 +21,14 @@ RSpec.describe 'api/v1.0/money_send_transactions', type: :request do
             'sender_id' => 1,
             'receiver_id' => 2
           }
-          run_test! do |response|
-            data = JSON.parse(response.body)
-            expect(data['money_send_transaction']['status']).to eq('succeeded')
-          end
+          run_test!
         end
 
         response '422', 'Invalid request' do
           schema '$ref' => '#/components/schemas/errors_object'
           examples 'application/json' => {
             errors: [
-              'Request is missing required parameters. Please check OpenAPI spec and check if it mathces. Contact support if this error presist despite matching OpenAPI spec.'
+              'Request is missing required parameters. Please check OpenAPI spec and see if it mathces. Contact support if this error presist despite matching OpenAPI spec.'
             ]
           }
           run_test!

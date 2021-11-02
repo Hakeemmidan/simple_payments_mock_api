@@ -59,6 +59,90 @@ components:
       - sender_id
       - receiver_id
 paths:
+  "/accounts/{id}/money_send_transactions":
+    get:
+      summary: Get all Account.find(id)'s money send transactions
+      tags:
+      - Account_money_send
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          format: int64
+        required: true
+      responses:
+        '201':
+          description: Account.find(id)'s money send transactions fetched
+          content:
+            application/json:
+              example:
+                data:
+                - id: 1
+                  amount: '1.23'
+                  status: succeeded
+                  created_at: '2020-01-01T00:00:00.000Z'
+                  updated_at: '2020-01-01T00:00:00.000Z'
+                  sender_id: 1
+                  receiver_id: 2
+                - id: 2
+                  amount: '45.67'
+                  status: declined
+                  created_at: '2020-01-01T00:00:00.000Z'
+                  updated_at: '2020-01-01T00:00:00.000Z'
+                  sender_id: 1
+                  receiver_id: 2
+        '422':
+          description: Invalid request
+          content:
+            application/json:
+              example:
+                errors:
+                - Request is missing required parameters. Please check OpenAPI spec
+                  and see if it mathces. Contact support if this error presist despite
+                  matching OpenAPI spec.
+  "/accounts/{id}/money_receive_transactions":
+    get:
+      summary: Get all Account.find(id)'s money receive transactions
+      tags:
+      - Account_money_receive
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+          format: int64
+        required: true
+      responses:
+        '201':
+          description: Account.find(id)'s money receive transactions fetched
+          content:
+            application/json:
+              example:
+                data:
+                - id: 1
+                  amount: '1.23'
+                  status: succeeded
+                  created_at: '2020-01-01T00:00:00.000Z'
+                  updated_at: '2020-01-01T00:00:00.000Z'
+                  sender_id: 1
+                  receiver_id: 2
+                - id: 2
+                  amount: '45.67'
+                  status: declined
+                  created_at: '2020-01-01T00:00:00.000Z'
+                  updated_at: '2020-01-01T00:00:00.000Z'
+                  sender_id: 1
+                  receiver_id: 2
+        '422':
+          description: Invalid request
+          content:
+            application/json:
+              example:
+                errors:
+                - Request is missing required parameters. Please check OpenAPI spec
+                  and see if it mathces. Contact support if this error presist despite
+                  matching OpenAPI spec.
   "/money_send_transaction":
     post:
       summary: Creates a transaction
@@ -85,7 +169,7 @@ paths:
               example:
                 errors:
                 - Request is missing required parameters. Please check OpenAPI spec
-                  and check if it mathces. Contact support if this error presist despite
+                  and see if it mathces. Contact support if this error presist despite
                   matching OpenAPI spec.
         '403':
           description: 'Forbidden: Account pending or unverified'
