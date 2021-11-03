@@ -43,7 +43,7 @@ bundle exec rspec
     - This way we don't automatically pull breaking changes on `bundle update`
 - Versioned API
   - Semantic versioning with MAJOR and MINOR versions specified for endpoints
-    - PATCH not specified because user doesn't need to specify version for bug fixes. They can assume that theses happen in the background.
+    - PATCH not specified because user doesn't need to specify version for bug fixes. They (bug fixes) can assumed to happen in the background via ticket resolutions.
   - Read more about semantic versioning [here](https://semver.org/)
 - [OpenAPI](https://swagger.io/specification/) compliant endpoints
   - All API endpoits have OpenAPI specs
@@ -53,7 +53,7 @@ bundle exec rspec
   - To generate a controller spec file, run `rails generate rspec:swagger API::v1.0::MyController` (replacing `MyController` with the target controller name)
 - Integration tests
   - All API endpoints have integration tests
-    - (total number of test: 42)
+    - (Total number of test: 42)
 
 ## Added Gems:
 - `rswag`
