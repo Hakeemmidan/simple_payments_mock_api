@@ -10,6 +10,7 @@ gem 'pg', '~> 1.2'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0'
 gem 'rswag', '~> 2.4'
+gem 'nokogiri', '~> 1.6'
 
 group :development, :test do
   gem 'dotenv-rails', '~> 2.7'

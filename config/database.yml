@@ -3,13 +3,13 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: <%= ENV['DATABASE_HOST'] %>
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  username: postgres # Replace this with <%= ENV['DATABASE_USERNAME'] %> in actual development
+  password: password # Replace this with <%= ENV['DATABASE_PASSWORD'] %> in actual development
 
 development:
   <<: *default
-  database: public_interviews_backend_development
+  database: public-interviews-backend_development
 
 test:
   <<: *default
-  database: public_interviews_backend_test
+  database: public-interviews-backend_test
