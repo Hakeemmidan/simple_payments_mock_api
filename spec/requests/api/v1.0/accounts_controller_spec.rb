@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1_0::AccountsControllers', type: :request do
-  let(:sender) { create(:account, :verified) }
-  let(:receiver) { create(:account, :verified) }
-  let(:money_send_transaction) { create(:money_send_transaction, sender: account, receiver: receiver) }
+  let!(:sender) { create(:account, :verified) }
+  let!(:receiver) { create(:account, :verified) }
+  let!(:money_send_transaction) { create(:money_send_transaction, sender: sender, receiver: receiver) }
 
   describe 'POST /accounts' do
     context 'when all required params are all available' do
@@ -79,7 +79,7 @@ RSpec.describe 'Api::V1_0::AccountsControllers', type: :request do
   describe 'GET /accounts/{id}/money_send_transactions' do
     context 'when ID is valid' do
       before do
-        get "/api/v1.0/accounts/#{account.id}/money_send_transactions"
+        get "/api/v1.0/accounts/#{sender.id}/money_send_transactions"
       end
 
       it 'returns 200 status code' do
@@ -111,7 +111,7 @@ RSpec.describe 'Api::V1_0::AccountsControllers', type: :request do
   describe 'GET /accounts/{id}/money_receive_transactions' do
     context 'when ID is valid' do
       before do
-        get "/api/v1.0/accounts/#{account.id}/money_receive_transactions"
+        get "/api/v1.0/accounts/#{sender.id}/money_receive_transactions"
       end
 
       it 'returns 200 status code' do

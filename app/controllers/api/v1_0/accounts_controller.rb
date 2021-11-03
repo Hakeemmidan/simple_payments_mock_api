@@ -19,6 +19,26 @@ class Api::V10::AccountsController < ApplicationController
     end
   end
 
+  def money_send_transactions
+    account = Account.find_by_id(params[:account_id])
+
+    if !account
+      render json: { errors: ['Account not found'] }, status: 404
+    else
+      render json: { data: account.money_send_transactions }
+    end
+  end
+
+  def money_receive_transactions
+    account = Account.find_by_id(params[:account_id])
+
+    if !account
+      render json: { errors: ['Account not found'] }, status: 404
+    else
+      render json: { data: account.money_receive_transactions }
+    end
+  end
+
   private
 
   def account_params
