@@ -1,13 +1,11 @@
-# README
+# Installation
 
-## Installation
-
-### Requirements
+## Requirements
 
 - :gem: Ruby version `2.7.2` (manage Ruby versions with [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv))
 - :elephant: PostgreSQL
 
-### Getting started
+## Getting started
 
 - Fork & clone the repository
 - `bundle install`
@@ -16,21 +14,30 @@
 - Run `rails server`
 - You're good to go :tada:
 
-## Challenge
+# Challenge
 
 See [`doc/challenge/README.md`](./doc/challenge/README.md)
 
 ______
 
-## Solution
+# Solution
 
-### OpenAPI UI
-\<OpenAPI UI IMAGE HERE\>
+## Run
+Setup and run server
+1. `rails db:create db:migrate`
+2. `bundle install`
+3. `rails s`
 
-### Schema
-\<SCHEMA IMAGE HERE\>
+Run tests
+```
+bundle exec rspec
+```
 
-### Features:
+## OpenAPI UI
+![swagger ui](./public/swagger_ui.png)
+(Available at http://localhost:3000/api-docs)
+
+## Features:
 - Versioned gems
   - All gems have MAJOR and MINOR versions spcecified
     - This way we don't automatically pull breaking changes on `bundle update`
@@ -48,11 +55,10 @@ ______
   - All API endpoints have integration tests
     - (total number of test: 42)
 
-### Added Gems:
+## Added Gems:
 - `rswag`
-- `rails-erd`
 - `database_cleaner-active_record`
 
-### Assumptions:
+## Assumptions:
 - All transactions are done in a single currency
 

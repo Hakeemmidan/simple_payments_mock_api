@@ -183,15 +183,13 @@ paths:
                 created_at: '2020-01-01T00:00:00.000Z'
                 updated_at: '2020-01-01T00:00:00.000Z'
                 balance: 0.0
-        '422':
-          description: Invalid request
+        '404':
+          description: Not found
           content:
             application/json:
               example:
                 errors:
-                - Request is missing required parameters. Please check OpenAPI spec
-                  and see if it mathces. Contact support if this error presist despite
-                  matching OpenAPI spec.
+                - Requested object (via provided ID) not found.
   "/accounts/{id}/money_send_transactions":
     get:
       summary: Get all Account.find(id)'s money send transactions
