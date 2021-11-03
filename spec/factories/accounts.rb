@@ -29,15 +29,15 @@ FactoryBot.define do
     phone_number { Faker::PhoneNumber.cell_phone_in_e164 }
 
     trait :unverified do
-      status { Account.statuses[:verified] }
+      status { Account.statuses[:unverified] }
     end
 
     trait :pending do
-      status { Account.statuses[:verified] }
+      status { Account.statuses[:pending] }
     end
 
     trait :verified do
-       status { Account.statuses[:verified] }
+      status { Account.statuses[:verified] }
     end
   end
 end

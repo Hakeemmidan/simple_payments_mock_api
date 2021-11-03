@@ -23,7 +23,6 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
             'updated_at': '2020-01-01T00:00:00.000Z',
             'balance': 0.0
           }
-          run_test!
         end
 
         response '422', 'Invalid request' do
@@ -33,7 +32,6 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
               'Request is missing required parameters. Please check OpenAPI spec and see if it mathces. Contact support if this error presist despite matching OpenAPI spec.'
             ]
           }
-          run_test!
         end
       end
     end
@@ -57,7 +55,6 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
             'updated_at': '2020-01-01T00:00:00.000Z',
             'balance': 0.0
           }
-          run_test!
         end
 
         response '404', 'Not found' do
@@ -67,7 +64,6 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
               'Requested object (via provided ID) not found.'
             ]
           }
-          run_test!
         end
       end
     end
@@ -108,7 +104,6 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
               }
             ]
           }
-          run_test!
         end
 
         response '422', 'Invalid request' do
@@ -118,7 +113,6 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
               'Request is missing required parameters. Please check OpenAPI spec and see if it mathces. Contact support if this error presist despite matching OpenAPI spec.'
             ]
           }
-          run_test!
         end
       end
     end
@@ -159,7 +153,6 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
               }
             ]
           }
-          run_test!
         end
 
         response '422', 'Invalid request' do
@@ -169,7 +162,6 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
               'Request is missing required parameters. Please check OpenAPI spec and see if it mathces. Contact support if this error presist despite matching OpenAPI spec.'
             ]
           }
-          run_test!
         end
       end
     end

@@ -46,7 +46,7 @@ ______
   - To generate a controller spec file, run `rails generate rspec:swagger API::v1.0::MyController` (replacing `MyController` with the target controller name)
 - Integration tests
   - All API endpoints have integration tests
-- Dockerized app
+    - (total number of test: 42)
 
 ### Added Gems:
 - `rswag`

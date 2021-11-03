@@ -21,7 +21,6 @@ RSpec.describe 'api/v1.0/money_send_transactions', type: :request do
             'sender_id' => 1,
             'receiver_id' => 2
           }
-          run_test!
         end
 
         response '422', 'Invalid request' do
@@ -31,7 +30,6 @@ RSpec.describe 'api/v1.0/money_send_transactions', type: :request do
               'Request is missing required parameters. Please check OpenAPI spec and see if it mathces. Contact support if this error presist despite matching OpenAPI spec.'
             ]
           }
-          run_test!
         end
 
         response '403', 'Forbidden: Account pending or unverified' do
@@ -41,7 +39,6 @@ RSpec.describe 'api/v1.0/money_send_transactions', type: :request do
               'Unverified and pending accounts cannot send or receive transacctions.'
             ]
           }
-          run_test!
         end
       end
     end

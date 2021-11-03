@@ -10,6 +10,8 @@ Rails.application.routes.draw do
         get 'money_send_transactions'
         get 'money_receive_transactions'
       end
+
+      resources :money_send_transactions, only: %i[create]
     end
   end
 end
