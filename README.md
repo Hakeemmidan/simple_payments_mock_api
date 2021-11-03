@@ -39,22 +39,21 @@ bundle exec rspec
 
 ## Features:
 - Versioned gems
-  - All gems have MAJOR and MINOR versions spcecified
+  - All gems have MAJOR and MINOR versions specified
     - This way we don't automatically pull breaking changes on `bundle update`
 - Versioned API
   - Semantic versioning with MAJOR and MINOR versions specified for endpoints
-    - PATCH not specified because user doesn't need to specify version for bug fixes. They (bug fixes) can assumed to happen in the background via ticket resolutions.
+    - PATCH is not specified because users don't need to change versions for bug fixes. They (bug fixes) can be assumed to happen in the background via ticket resolutions.
   - Read more about semantic versioning [here](https://semver.org/)
 - [OpenAPI](https://swagger.io/specification/) compliant endpoints
-  - All API endpoits have OpenAPI specs
+  - All API endpoints have OpenAPI specs
   - UI viewable at http://localhost:3000/api-docs
   - YAML file viewable at `swagger/v1.0/swagger.yaml`
   - If you change any specs (at `spec/requests`), make sure you run `rails rswag:specs:swaggerize ` after
   - To generate a controller spec file, run `rails generate rspec:swagger API::v1.0::MyController` (replacing `MyController` with the target controller name)
 - Integration tests
   - All API endpoints have integration tests
-  - Other data type validation and resposne code matching tests are added in `spec/requests/api/v1.0/accounts_spec.rb` and in `spec/requests/api/v1.0/money_send_transactions_controller_spec.rb`
-    by utilizing the `rswag` test suite.
+  - Other data type validation and resposne code matching tests are added in `spec/requests/api/v1.0/accounts_spec.rb` and in `spec/requests/api/v1.0/money_send_transactions_controller_spec.rb` by utilizing the `rswag` gem test suite.
   - (Total number of tests: 53)
 
 ## Added Gems:
