@@ -29,12 +29,12 @@ RSpec.describe MoneySendTransaction, type: :model do
     expect(money_send_transaction).to be_valid
   end
 
-  describe 'Associations' do
+  describe 'associations' do
     it { should belong_to(:sender).class_name('Account') }
     it { should belong_to(:receiver).class_name('Account') }
   end
 
-  describe 'Validations' do
+  describe 'validations' do
     it { should validate_presence_of(:amount) }
     it { should validate_presence_of(:status) }
     it { should validate_presence_of(:sender) }

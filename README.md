@@ -50,6 +50,9 @@ bundle exec rspec
   - UI viewable at http://localhost:3000/api-docs
   - YAML file viewable at `swagger/v1.0/swagger.yaml`
   - If change any specs (at `spec/requests`), make sure you run `rails rswag:specs:swaggerize ` after
+    - You will also need to uncomment all `run_test!` calls before running the swaggerize command above, and then comment them
+    back in after. (That's because they're used to generate `swagger.yaml`, but we don't use them. We use regular integration tests
+    instead. Further comments about this are at `spec/requests/api/v1.0/accounts_spec.rb:26`)
   - To generate a controller spec file, run `rails generate rspec:swagger API::v1.0::MyController` (replacing `MyController` with the target controller name)
 - Integration tests
   - All API endpoints have integration tests

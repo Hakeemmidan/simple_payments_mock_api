@@ -23,6 +23,9 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
             'updated_at': '2020-01-01T00:00:00.000Z',
             'balance': 0.0
           }
+          # vvv These are commented-out because they're mostly convered in integration tests.
+          # vvv The main use of these spec files is to generate the swagger/OpenAPI spec doc (swagger.yaml).
+          # vvv It's possible to use the 'run_test!' calls but they'll need some more configuration.
           # run_test!
         end
 
