@@ -34,7 +34,7 @@ RSpec.configure do |config|
             type: :object,
             properties: {
               id: { type: :integer, format: :int64 },
-              balance: { type: :integer, format: :double },
+              balance: { type: :string },
               email: { type: :string },
               first_name: { type: :string },
               last_name: { type: :string },
@@ -59,7 +59,7 @@ RSpec.configure do |config|
             type: :object,
             properties: {
               id: { type: :integer, format: :int64 },
-              amount: { type: :number, format: :double },
+              amount: { type: :string },
               status: { type: :string, enum: %w[declined pending succeeded] },
               sender_id: { type: :integer, format: :int64 },
               receiver_id: { type: :integer, format: :int64 },
@@ -71,7 +71,7 @@ RSpec.configure do |config|
           money_send_transaction_partial: {
             type: :object,
             properties: {
-              amount: { type: :number, format: :double },
+              amount: { type: :string },
               sender_id: { type: :integer, format: :int64 },
               receiver_id: { type: :integer, format: :int64 }
             },

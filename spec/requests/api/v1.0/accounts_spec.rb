@@ -2,7 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe 'api/v1.0/accounts', type: :request do
   describe 'Accounts v1.0 API' do
-    path '/accounts' do
+    path '/api/v1.0/accounts' do
       post "Create a new account" do
         tags 'Account'
         consumes 'application/json'
@@ -10,7 +10,7 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
           '$ref' => '#/components/schemas/account_partial'
         }
 
-        response '201', 'Account created successfully' do
+        response '200', 'Account created successfully' do
           schema '$ref' => '#/components/schemas/account_full'
           examples 'application/json' => {
             'id': 1,
@@ -21,12 +21,10 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
             'status': 'pending',
             'created_at': '2020-01-01T00:00:00.000Z',
             'updated_at': '2020-01-01T00:00:00.000Z',
-            'balance': 0.0
+            'balance': '0.00'
           }
-          # vvv These are commented-out because they're mostly convered in integration tests.
-          # vvv The main use of these spec files is to generate the swagger/OpenAPI spec doc (swagger.yaml).
-          # vvv It's possible to use the 'run_test!' calls but they'll need some more configuration.
-          # run_test!
+          let(:account) { { first_name: 'hello', last_name: 'world', phone_number: '123', email: 'helloworld123@gmail.com' } }
+          run_test!
         end
 
         response '422', 'Invalid request' do
@@ -36,18 +34,19 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
               'Request is missing required parameters. Please check OpenAPI spec and see if it mathces. Contact support if this error presist despite matching OpenAPI spec.'
             ]
           }
-          # run_test!
+          let(:account) { { first_name: 'hello' } }
+          run_test!
         end
       end
     end
 
-    path '/accounts/{id}' do
+    path '/api/v1.0/accounts/{id}' do
       get "Get Account.find(id)" do
         tags 'Account'
         consumes 'application/json'
         parameter name: :id, in: :path, schema: { type: :integer, format: :int64 }, required: true
 
-        response '201', "Account.find(id) found" do
+        response '200', "Account.find(id) found" do
           schema '$ref' => '#/components/schemas/account_full'
           examples 'application/json' => {
             'id': 1,
@@ -58,9 +57,10 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
             'status': 'pending',
             'created_at': '2020-01-01T00:00:00.000Z',
             'updated_at': '2020-01-01T00:00:00.000Z',
-            'balance': 0.0
+            'balance': '0.00'
           }
-          # run_test!
+          let(:id) { create(:account, :verified).id }
+          run_test!
         end
 
         response '404', 'Not found' do
@@ -70,18 +70,19 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
               'Requested object (via provided ID) not found.'
             ]
           }
-          # run_test!
+          let(:id) { 'non-existent-id' }
+          run_test!
         end
       end
     end
 
-    path '/accounts/{id}/money_send_transactions' do
+    path '/api/v1.0/accounts/{id}/money_send_transactions' do
       get "Get all Account.find(id)'s money send transactions" do
         tags 'Account'
         consumes 'application/json'
         parameter name: :id, in: :path, schema: { type: :integer, format: :int64 }, required: true
 
-        response '201', "Account.find(id)'s money send transactions fetched" do
+        response '200', "Account.find(id)'s money send transactions fetched" do
           schema type: :object, properties: {
             data: {
               type: :array, items: {
@@ -111,28 +112,30 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
               }
             ]
           }
-          # run_test!
+          let(:id) { create(:account, :verified).id }
+          run_test!
         end
 
-        response '422', 'Invalid request' do
+        response '404', 'Invalid request' do
           schema '$ref' => '#/components/schemas/errors_object'
           examples 'application/json' => {
             errors: [
               'Request is missing required parameters. Please check OpenAPI spec and see if it mathces. Contact support if this error presist despite matching OpenAPI spec.'
             ]
           }
-          # run_test!
+          let(:id) { 'non-existent-id' }
+          run_test!
         end
       end
     end
 
-    path '/accounts/{id}/money_receive_transactions' do
+    path '/api/v1.0/accounts/{id}/money_receive_transactions' do
       get "Get all Account.find(id)'s money receive transactions" do
         tags 'Account'
         consumes 'application/json'
         parameter name: :id, in: :path, schema: { type: :integer, format: :int64 }, required: true
 
-        response '201', "Account.find(id)'s money receive transactions fetched" do
+        response '200', "Account.find(id)'s money receive transactions fetched" do
           schema type: :object, properties: {
             data: {
               type: :array, items: {
@@ -162,17 +165,19 @@ RSpec.describe 'api/v1.0/accounts', type: :request do
               }
             ]
           }
-          # run_test!
+          let(:id) { create(:account, :verified).id }
+          run_test!
         end
 
-        response '422', 'Invalid request' do
+        response '404', 'Invalid request' do
           schema '$ref' => '#/components/schemas/errors_object'
           examples 'application/json' => {
             errors: [
               'Request is missing required parameters. Please check OpenAPI spec and see if it mathces. Contact support if this error presist despite matching OpenAPI spec.'
             ]
           }
-          # run_test!
+          let(:id) { 'non-existent-id' }
+          run_test!
         end
       end
     end

@@ -21,8 +21,7 @@ components:
           type: integer
           format: int64
         balance:
-          type: integer
-          format: double
+          type: string
         email:
           type: string
         first_name:
@@ -76,8 +75,7 @@ components:
           type: integer
           format: int64
         amount:
-          type: number
-          format: double
+          type: string
         status:
           type: string
           enum:
@@ -108,8 +106,7 @@ components:
       type: object
       properties:
         amount:
-          type: number
-          format: double
+          type: string
         sender_id:
           type: integer
           format: int64
@@ -121,14 +118,14 @@ components:
       - sender_id
       - receiver_id
 paths:
-  "/accounts":
+  "/api/v1.0/accounts":
     post:
       summary: Create a new account
       tags:
       - Account
       parameters: []
       responses:
-        '201':
+        '200':
           description: Account created successfully
           content:
             application/json:
@@ -141,7 +138,7 @@ paths:
                 status: pending
                 created_at: '2020-01-01T00:00:00.000Z'
                 updated_at: '2020-01-01T00:00:00.000Z'
-                balance: 0.0
+                balance: '0.00'
         '422':
           description: Invalid request
           content:
@@ -156,7 +153,7 @@ paths:
           application/json:
             schema:
               "$ref": "#/components/schemas/account_partial"
-  "/accounts/{id}":
+  "/api/v1.0/accounts/{id}":
     get:
       summary: Get Account.find(id)
       tags:
@@ -169,7 +166,7 @@ paths:
           format: int64
         required: true
       responses:
-        '201':
+        '200':
           description: Account.find(id) found
           content:
             application/json:
@@ -182,7 +179,7 @@ paths:
                 status: pending
                 created_at: '2020-01-01T00:00:00.000Z'
                 updated_at: '2020-01-01T00:00:00.000Z'
-                balance: 0.0
+                balance: '0.00'
         '404':
           description: Not found
           content:
@@ -190,7 +187,7 @@ paths:
               example:
                 errors:
                 - Requested object (via provided ID) not found.
-  "/accounts/{id}/money_send_transactions":
+  "/api/v1.0/accounts/{id}/money_send_transactions":
     get:
       summary: Get all Account.find(id)'s money send transactions
       tags:
@@ -203,7 +200,7 @@ paths:
           format: int64
         required: true
       responses:
-        '201':
+        '200':
           description: Account.find(id)'s money send transactions fetched
           content:
             application/json:
@@ -223,7 +220,7 @@ paths:
                   updated_at: '2020-01-01T00:00:00.000Z'
                   sender_id: 1
                   receiver_id: 2
-        '422':
+        '404':
           description: Invalid request
           content:
             application/json:
@@ -232,7 +229,7 @@ paths:
                 - Request is missing required parameters. Please check OpenAPI spec
                   and see if it mathces. Contact support if this error presist despite
                   matching OpenAPI spec.
-  "/accounts/{id}/money_receive_transactions":
+  "/api/v1.0/accounts/{id}/money_receive_transactions":
     get:
       summary: Get all Account.find(id)'s money receive transactions
       tags:
@@ -245,7 +242,7 @@ paths:
           format: int64
         required: true
       responses:
-        '201':
+        '200':
           description: Account.find(id)'s money receive transactions fetched
           content:
             application/json:
@@ -265,7 +262,7 @@ paths:
                   updated_at: '2020-01-01T00:00:00.000Z'
                   sender_id: 1
                   receiver_id: 2
-        '422':
+        '404':
           description: Invalid request
           content:
             application/json:
@@ -274,14 +271,14 @@ paths:
                 - Request is missing required parameters. Please check OpenAPI spec
                   and see if it mathces. Contact support if this error presist despite
                   matching OpenAPI spec.
-  "/money_send_transaction":
+  "/api/v1.0/money_send_transactions":
     post:
       summary: Creates a transaction
       tags:
       - Money Send Transactions
       parameters: []
       responses:
-        '201':
+        '200':
           description: Transaction created
           content:
             application/json:
@@ -293,7 +290,7 @@ paths:
                 updated_at: '2020-01-01T00:00:00.000Z'
                 sender_id: 1
                 receiver_id: 2
-        '422':
+        '404':
           description: Invalid request
           content:
             application/json:

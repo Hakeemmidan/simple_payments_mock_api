@@ -4,7 +4,11 @@ class Api::V10::MoneySendTransactionsController < ApplicationController
     receiver = Account.find_by_id(money_send_transaction_params[:receiver_id])
 
     if sender.nil? || receiver.nil?
-      render json: { errors: (sender.errors.full_messages + receiver.errors.full_messages) }, status: 422
+      errors = []
+      errors << 'Sender account not found' if sender.nil?
+      errors << 'Receiver account not found' if receiver.nil?
+
+      render json: { errors: errors }, status: 404
       return
     elsif money_send_transaction_params[:amount].to_f.negative?
       render json: { errors: ['Amount must be greater than 0'] }, status: 422

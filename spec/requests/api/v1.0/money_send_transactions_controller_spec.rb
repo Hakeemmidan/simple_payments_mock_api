@@ -118,7 +118,7 @@ RSpec.describe "Api::V1_0::MoneySendTransactionsContrller", type: :request do
         parsed_response_body = JSON.parse(response.body)
         receiver = Account.find_by_id(parsed_response_body['receiver_id'])
 
-        expect(receiver.balance.to_f).to eq(verified_receiver_pre_send_amount + verified_sender.balance)
+        expect(receiver.balance.to_f).to eq(verified_receiver_pre_send_amount + verified_sender.balance.to_f)
       end
 
       it 'sender gets money subtracted from balance' do

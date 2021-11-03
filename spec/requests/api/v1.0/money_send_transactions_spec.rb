@@ -2,7 +2,7 @@ require 'swagger_helper'
 
 RSpec.describe 'api/v1.0/money_send_transactions', type: :request do
   describe 'MoneySendTransaction v1.0 API' do
-    path '/money_send_transaction' do
+    path '/api/v1.0/money_send_transactions' do
       post 'Creates a transaction' do
         tags 'Money Send Transactions'
         consumes 'application/json'
@@ -10,7 +10,7 @@ RSpec.describe 'api/v1.0/money_send_transactions', type: :request do
           '$ref' => '#/components/schemas/money_send_transaction_partial'
         }
 
-        response '201', 'Transaction created' do
+        response '200', 'Transaction created' do
           schema '$ref' => '#/components/schemas/money_send_transaction_full'
           examples 'application/json' => {
             'id' => 1,
@@ -21,17 +21,21 @@ RSpec.describe 'api/v1.0/money_send_transactions', type: :request do
             'sender_id' => 1,
             'receiver_id' => 2
           }
-          # run_test!
+          let(:verified_sender) { create(:account, :verified) }
+          let(:verified_receiver) { create(:account, :verified) }
+          let(:money_send_transaction) { { amount: 12.00, sender_id: verified_sender.id, receiver_id:  verified_receiver.id } }
+          run_test!
         end
 
-        response '422', 'Invalid request' do
+        response '404', 'Invalid request' do
           schema '$ref' => '#/components/schemas/errors_object'
           examples 'application/json' => {
             errors: [
               'Request is missing required parameters. Please check OpenAPI spec and see if it mathces. Contact support if this error presist despite matching OpenAPI spec.'
             ]
           }
-          # run_test!
+          let(:money_send_transaction) { { amount: 12.00 } }
+          run_test!
         end
 
         response '403', 'Forbidden: Account pending or unverified' do
@@ -41,7 +45,10 @@ RSpec.describe 'api/v1.0/money_send_transactions', type: :request do
               'Unverified and pending accounts cannot send or receive transacctions.'
             ]
           }
-          # run_test!
+          let(:unverified_sender) { create(:account, :unverified) }
+          let(:verified_receiver) { create(:account, :verified) }
+          let(:money_send_transaction) { { amount: 12.00, sender_id: unverified_sender.id, receiver_id:  verified_receiver.id } }
+          run_test!
         end
       end
     end
