@@ -71,6 +71,7 @@ Run tests
 
 ## Added Gems:
 - `rswag`
+- `nokogiri`
 - `database_cleaner-active_record`
 
 ## Assumptions:
