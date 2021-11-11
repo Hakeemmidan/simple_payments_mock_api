@@ -1,5 +1,5 @@
 # Simple Payments API
-A simple payments API where users can create accounts, send/receive money, get money added/subtracted from their account balance, and see sent/received transactions.
+A simple payments API where users can create accounts, send/receive money, get money added/subtracted from their account's balance, and see sent/received transactions.
 
 ## Requirements
 - Ruby version `2.7.2` (manage Ruby versions with [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv))
