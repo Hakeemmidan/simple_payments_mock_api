@@ -1,26 +1,8 @@
-# Installation
+# Simple Payments API
 
 ## Requirements
-
 - :gem: Ruby version `2.7.2` (manage Ruby versions with [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv))
 - :elephant: PostgreSQL
-
-## Getting started
-
-- Fork & clone the repository
-- `bundle install`
-- Run `rails db:create db:migrate`
-- Run `bundle exec rspec` to validate the installation
-- Run `rails server`
-- You're good to go :tada:
-
-# Challenge
-
-See [`doc/challenge/README.md`](./doc/challenge/README.md)
-
-______
-
-# Solution
 
 ## Run
 Setup and run server
@@ -69,10 +51,11 @@ Run tests
 - Run the build (i.e, `docker-compose build`) after adding any new gems 
 - [More help](https://gist.github.com/pedrowss/b0321b028a7ddadb69ea813a297c9c6b) (link to tutorial followed for Rails-Docker setup)
 
-## Added Gems:
+## Noticeable Gems:
 - `rswag`
-- `nokogiri`
+  - For writing and generating OpenAPI specs
 - `database_cleaner-active_record`
+  - For cleaning up the database before, during, and after running tests
 
 ## Assumptions:
 - All transactions are done in a single currency
