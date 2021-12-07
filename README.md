@@ -23,7 +23,7 @@ A simple payments API where users can create accounts, send/receive money, get m
   - To generate a controller spec file, run `rails generate rspec:swagger API::v1.0::MyController` (replacing `MyController` with the target controller name)
 - :heavy_check_mark: Integration tests
   - All API endpoints have integration tests
-  - Other data type validation and resposne code matching tests are added in `spec/requests/api/v1.0/accounts_spec.rb` and in `spec/requests/api/v1.0/money_send_transactions_controller_spec.rb` by utilizing the `rswag` gem test suite.
+  - Other data type validation and resposne code matching tests are added in `spec/requests/api/v1.0/accounts_spec.rb` and in `spec/requests/api/v1.0/money_send_transactions_spec.rb` by utilizing the `rswag` gem test suite.
   - (Total number of tests: 53)
 - :whale: Dockerized
 
