@@ -63,8 +63,8 @@ RSpec.configure do |config|
               status: { type: :string, enum: %w[declined pending succeeded] },
               sender_id: { type: :integer, format: :int64 },
               receiver_id: { type: :integer, format: :int64 },
-              created_at: { type: :string, format: 'date-time' },
-              updated_at: { type: :string, format: 'date-time' }
+              created_at: { type: :string, format: :date_time },
+              updated_at: { type: :string, format: :date_time }
             },
             required: %w[id amount status sender_id receiver_id created_at updated_at]
           },
